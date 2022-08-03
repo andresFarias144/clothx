@@ -1,0 +1,126 @@
+<!DOCTYPE html><!-- EN USO-->
+<html lang="en">
+<link rel="stylesheet" type="text/css" href="/css/stylesDetail.css" />
+<!-- Head -->
+
+<%- include("./partials/head") %>
+
+    <!-- Head -->
+
+    <body>
+        <!-- Header -->
+
+        <%- include("./partials/header") %>
+
+            <hr>
+            <main>
+                <div class="main1">
+
+                    <div class="col-12 col-lg-6 imagen-producto-detalle">
+                         <img style="max-width: 100%;" src="/img/products/<%= product.image %>" alt="product image"> 
+                    </div>
+
+                    <div class="col-12 col-lg-3">
+                        <div class="titulos">
+                             
+                                <div class="nombreProd-detalle"><%= product.name %></div>
+                             
+                            <br>
+                        </div>
+                        <section>
+                            <h4>Informacion de producto</h4>
+                            <div>
+                                <%= product.description %>
+                            </div>
+                            <br>
+
+                            <h4>Categoría</h6>
+                                <div>
+                                    <%= product.category.dataValues.name %>
+                                </div>
+                                <br>
+                        </section>
+                        <div>
+                            <h4> Variante Color: </h4>
+                        </div>
+                        <div>
+                            <%= product.color%>
+                        </div>
+                        <br><br>
+                        <div class="titulo2">
+                            <h4>Precio</h4>
+                            <div class="precio">
+                                <%= product.price %>
+                            </div>
+                        </div>
+                        <br><br>
+                        <ul class="actions-list">
+                    <li>
+                        <i class="fas fa-credit-card"></i>
+                        <p style="font-family: 'Quicksand', sans-serif; font-weight: 600;">    Pagá en 12 cuotas sin interes</p>
+                    </li>
+                    <li>
+                        <i class="fas fa-store"></i>
+                        <p style="font-family: 'Quicksand', sans-serif; font-weight: 600;">    Retiro gratis en locales</p>
+                    </li>
+                </ul>
+                        <br> <br><br><br>
+
+
+                        <% if(locals.userLogged && locals.userLogged.category == 1) { %>
+                           <!-- <a href="/users/logout"> Cerrar sesión </a> 
+                            <div><%=locals.userLogged.name%></div> -->
+                           
+                               
+                            
+                                    <button><a href="/products/edit/<%= product.id %>" class="botonuno action-button edit">EDITAR
+                                        PRODUCTO</a></button>
+        
+                                <br><br><br>
+            
+                                <form action="/products/delete/<%= product.id %>?_method=DELETE" method="POST"
+                                    style="display: inline-flex">
+                                    <button type="submit" class="botonuno action-button delete">ELIMINAR</button>
+                                </form>
+                        <br><br>
+            
+                        <% } %>
+
+
+                        
+                        <br>
+                        <a class="botonuno" href="/productCart/" style="color: white;">  Agregar al Carrito </a>
+
+
+                    </div>
+
+
+
+
+                </div>
+
+                <div class="container">
+                    
+                    <div class="relacionados">Productos relacionados</div>
+                    <div class="flexfotos">
+                         <% productosRelacionados.forEach(producto => { %> 
+                            <div class="prod-relacionado">
+                                <a href="/products/<%=producto.dataValues.id%>">
+                                    <figure class="product-box_image">
+                                        <img src="/img/products/<%=producto.dataValues.image%>" alt="imagen de producto" style="max-width: 45%";>
+                                    </figure>
+                                    <div class="nombreProd"><%=producto.dataValues.name%></div>
+                                </a>
+                            </div>
+                        <% }) %>    
+                    </div>
+                </div>
+
+            </main>
+            <hr>
+            <!-- footer -->
+            <%- include('partials/footer') %>
+                <!-- /footer -->
+    </body>
+
+</html>

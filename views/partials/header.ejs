@@ -1,0 +1,52 @@
+<meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+ 
+
+
+<header>
+    <section class="top-nav">
+        <div>
+            <a href="/"><img class="imagen-logo" src="/img/Logo.png" alt=""  /></a>
+        </div>
+
+        <div>
+            <form action="/search" method="GET" class="search-form">
+                <div class="lupita">
+                <input type="text" name="keywords" placeholder="Buscar productos, marcas y más" class="search-form_input">
+                <button type="submit" class="search-form_button"><i class="fas fa-search"></i></button>
+            </div>
+            </form>
+        </div>
+        <input id="menu-toggle" type="checkbox" />
+        <label class='menu-button-container' for="menu-toggle">
+        <div class='menu-button'></div>
+        </label>
+        <ul class="menu">
+          <li><i class="fas fa-heart"></i></li>
+          <li><i class="fas fa-shopping-cart"></i></li>
+          <li><a href="/users/login"><div class="perfil-icono"><i class="fas fa-user-circle"></i></div></a></li>
+          
+
+          <% if(locals.userLogged && locals.userLogged.category == 1) { %>
+            <li> <a href="/users/admin">Panel de Administracion</a></li>
+          <% } %>
+    
+    
+          <% if(locals.userLogged) { %>
+           <li><img class="avatar" src="/img/usuarios/<%= locals.userLogged.avatar %>" alt="imagen de usuario"></li> 
+           <li><div class="nombre-usuario"><%=locals.userLogged.name%></div></li>
+           <li> <a href="/users/logout"> Cerrar sesión </a></li>
+          <% } %>
+    
+        
+    
+    
+        </ul>
+      </section>
+
+      
+
+
+      
+    
+</header>
